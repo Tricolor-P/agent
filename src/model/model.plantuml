@@ -1,0 +1,82 @@
+@startuml
+class RoundGame {
+  play()
+}
+abstract class Agent {
+  selectable_comand_lists
+  status
+  slected_commnad_list
+  select()
+}
+class RandomCommandAgent {
+}
+class AICommandAgent {
+}
+abstract class Observer {
+ update()
+}
+abstract class Subject {
+ observer_list
+ register_observer()
+ remove_observer()
+ notify_observer()
+}
+class Recorder {
+  start_time
+  frame_num
+  push_frame()
+  save()
+  update()
+}
+abstract class Command {
+  cmd
+  run()
+}
+class NoCommand {
+}
+class MoveCommand {
+}
+class AimCommand {
+}
+abstract class SelectableCommandList {
+ list
+ dump()
+ random_select()
+}
+class SelectedCommandList{
+ run()
+ update()
+ notify_observer()
+}
+class Status {
+ screen
+ messages
+ update()
+ notify_observer()
+}
+class Screen {
+}
+class Messages {
+}
+
+Observer <|-- Recorder
+RoundGame --> Agent
+RoundGame --> Recorder
+Agent <|-- RandomCommandAgent
+Agent <|-- AICommandAgent
+Agent --> Status
+Agent --> SelectedCommandList
+Agent --> SelectableCommandList
+SelectableCommandList <|-- MoveCommandList
+SelectableCommandList <|-- AimCommnadList
+SelectableCommandList <|-- ActionCommandList
+SelectableCommandList --> Command 
+Command <|-- NoCommand
+Command <|-- MoveCommand
+Command <|-- AimCommand
+Subject <|-- Status
+Subject <|-- SelectedCommandList
+Subject --> Observer
+Status --> Screen
+Status --> Messages
+@enduml
