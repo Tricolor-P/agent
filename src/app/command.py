@@ -21,7 +21,7 @@ class MoveCommand(Command):
         self.y = y
     def run(self):
         super().run()
-        print("キープッシュ")
+        print("移動する")
         return [self.x, self.y]
 
 class AimCommand(Command):

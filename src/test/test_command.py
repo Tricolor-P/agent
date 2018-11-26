@@ -5,9 +5,9 @@ def test_command_init():
     assert "NoCommand" == NoCommand().run()
 
 def test_move_commnad():
-    assert [ 1, 0] == MoveCommand( 1, 0).run()
-    assert [ 0,-1] == MoveCommand( 0,-1).run()
-    assert [-1, 1] == MoveCommand(-1, 1).run()
+    assert ["d", ""] == MoveCommand( "d","").run()
+    assert [ "","s"] == MoveCommand(  "","s").run()
+    assert ["a","w"] == MoveCommand( "a","w").run()
 
 
 def test_aim_command():
