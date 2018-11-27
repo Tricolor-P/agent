@@ -15,8 +15,8 @@ def scope_module():
 
 def test_window_success():
     window = Window("AssaultCube")
-    window.capture()
-    assert type(window.img) == numpy.ndarray
+    img = window.capture()
+    assert type(img) == numpy.ndarray
 
 def test_window_false():
     window = Window("AAA")
