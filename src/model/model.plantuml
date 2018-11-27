@@ -21,13 +21,6 @@ abstract class Subject {
  remove_observer()
  notify_observer()
 }
-class Recorder {
-  start_time
-  frame_num
-  push_frame()
-  save()
-  update()
-}
 abstract class Command {
   cmd
   run()
@@ -43,40 +36,69 @@ abstract class SelectableCommandList {
  dump()
  random_select()
 }
-class SelectedCommandList{
+class ExecuteCommandList{
  run()
  update()
  notify_observer()
 }
 class Status {
- screen
+ img
  messages
  update()
  notify_observer()
 }
-class Screen {
+class Window {
+  capture()
 }
-class Messages {
+class Parallel_Executor {
+  dump()
 }
+abstract class DictRecord {
+}
+class RoundRecord {
+  start_time
+  frames
+  update_status()
+  update_execute_commnad()
+  save()
+}
+class FrameRecord {
+}
+class ScreenRecord {
+}
+class MessageRecord {
+}
+class CommandRecord {
+}
+DictRecord <|-- RoundRecord
+DictRecord <|-- FrameRecord
+DictRecord <|-- ScreenRecord
+DictRecord <|-- MessageRecord
+DictRecord <|-- CommandRecord
+RoundRecord --> FrameRecord
+FrameRecord --> ScreenRecord
+FrameRecord --> MessageRecord
+FrameRecord --> CommandRecord
 
-Observer <|-- Recorder
-RoundGame --> Agent
-RoundGame --> Recorder
+Observer <|-- RoundRecord
+RoundGame --> ExecuteCommandList
+RoundGame --> Status
+RoundGame --> RoundRecord
 Agent <|-- RandomCommandAgent
 Agent <|-- AICommandAgent
 Agent --> Status
-Agent --> SelectedCommandList
 Agent --> SelectableCommandList
 SelectableCommandList <|-- MoveCommandList
 SelectableCommandList <|-- AimCommnadList
 SelectableCommandList <|-- ActionCommandList
-SelectableCommandList --> Command 
+SelectableCommandList --> Command
+ExecuteCommandList --> Agent
 Command <|-- NoCommand
 Command <|-- MoveCommand
 Command <|-- AimCommand
 Subject <|-- Status
-Subject <|-- SelectedCommandList
+Subject <|-- ExecuteCommandList
 Subject --> Observer
-Status --> Screen
-Status --> Messages
+Status --> Window
+Status --> Parallel_Executor
 @enduml
