@@ -1,0 +1,37 @@
+{
+    "index": 0,
+    "time": 0.02206563949584961,
+    "screen": {
+        "name": "screen000.jpg",
+        "img": "file_out_put"
+    },
+    "message": [
+        "Using home directory: /home/y_ozawa/.assaultcube_v1.2",
+        "init: sdl",
+        "init: net",
+        "init: world",
+        "init: video: sdl",
+        "init: video: mode",
+        "init: video: misc",
+        "init: gl",
+        "Renderer: GeForce GTX 750 Ti/PCIe/SSE2 (NVIDIA Corporation)",
+        "Driver: 4.5.0 NVIDIA 384.130",
+        "init: console",
+        "init: sound",
+        "Audio devices: ",
+        "Sound: OpenAL Soft / OpenAL Soft (OpenAL Community)",
+        "Driver: 1.1 ALSOFT 1.16.0",
+        "init: cfg",
+        "init: models",
+        "init: curl",
+        "init: docs",
+        "init: localconnect",
+        "read map packages/maps/official/ac_elevation.cgz rev 9 (4 milliseconds)",
+        "ac_elevation by A&D_Shadow",
+        "loaded textures (58 milliseconds)",
+        "loaded mapmodels (49 milliseconds)",
+        "loaded mapsounds (240 milliseconds)",
+        "game mode is \"TDM\"",
+        "init: mainloop"
+    ]
+}

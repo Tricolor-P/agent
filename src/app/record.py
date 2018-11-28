@@ -7,6 +7,8 @@ import pprint
 import json
 import time
 from collections import OrderedDict
+import numpy
+import cv2
 
 class Record(metaclass=ABCMeta):
     @abstractmethod
@@ -81,14 +83,25 @@ class FrameRecord(Record):
             return obj
     def add(self, key, value):
         self.data[key] = value
+    def write(self, filename):
+        super().write(filename)
+        if isinstance(self.data["screen"].img, numpy.ndarray):
+            cv2.imwrite("tmp/"+self.data["screen"].name, self.data["screen"].img)
+        
+
     @staticmethod
     def read(filename):
         with open (filename, "r") as f:
             df = json.load(f)
             frame_record = FrameRecord(df["index"], df["time"])
-            frame_record.add(  "screen", ScreenRecord( df["screen"]["name"] , df["screen"]["img"] ))
+            if df["screen"]["img"] == "file_out_put":
+                img = cv2.imread(filename[0:filename.rfind("/")+1] + df["screen"]["name"])
+            else:
+                img = df["screen"]["img"]
+            frame_record.add(  "screen", ScreenRecord( df["screen"]["name"] , img ))
             frame_record.add( "message", MessageRecord( df["message"] ))
-            frame_record.add( "command", CommandRecord( df["command"]["move"], df["command"]["aim"], df["command"]["shot"] ))
+            if "command" in df:
+                frame_record.add( "command", CommandRecord( df["command"]["move"], df["command"]["aim"], df["command"]["shot"] ))
             return frame_record
 
 class ScreenRecord(Record):
@@ -97,7 +110,12 @@ class ScreenRecord(Record):
         self.img  = img
     def to_dict(self):
         return OrderedDict([( "name", self.name ),
-                            (  "img", self.img  )])
+                            (  "img", self._img_to_dict(self.img))])
+    def _img_to_dict(self, img):
+        if isinstance(img, numpy.ndarray):
+            return "file_out_put"
+        else:
+            return img
     @staticmethod
     def read(filename):
         with open (filename, "r") as f:

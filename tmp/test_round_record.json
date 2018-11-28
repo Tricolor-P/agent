@@ -1,7 +1,7 @@
 [
     {
         "index": 0,
-        "time": 5.4836273193359375e-06,
+        "time": 5.0067901611328125e-06,
         "screen": {
             "name": "screen000.jpg",
             "img": "numpy img array"
@@ -18,7 +18,7 @@
     },
     {
         "index": 1,
-        "time": 0.10015296936035156,
+        "time": 0.10017013549804688,
         "screen": {
             "name": "screen001.jpg",
             "img": "numpy img array"
@@ -35,7 +35,7 @@
     },
     {
         "index": 2,
-        "time": 0.20035624504089355,
+        "time": 0.2003769874572754,
         "screen": {
             "name": "screen002.jpg",
             "img": "numpy img array"

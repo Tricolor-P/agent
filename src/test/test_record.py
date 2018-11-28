@@ -1,6 +1,6 @@
 import pytest
 from src.app.record import ScreenRecord, MessageRecord, CommandRecord, FrameRecord, RoundRecord
-import time
+import time, numpy
 
 class TestScreenRecord:
     def test_record(self):
@@ -85,6 +85,11 @@ class TestFrameRecord:
         assert type(frame_record.data["screen"]) is ScreenRecord
         assert type(frame_record.data["message"]) is MessageRecord
         assert type(frame_record.data["command"]) is CommandRecord
+    
+    def test_read_img(self):
+        frame_record = FrameRecord.read("tmp/test_status_current_frame.json")
+        print(frame_record.data["screen"].img)
+        assert type(frame_record.data["screen"].img) is numpy.ndarray
 
 
 class TestRoundRecord:
