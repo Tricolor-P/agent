@@ -1,0 +1,17 @@
+{
+    "index": 2,
+    "time": 0.5,
+    "screen": {
+        "name": "screen001.jpg",
+        "img": "numpy img array"
+    },
+    "message": [
+        "aa",
+        "bb"
+    ],
+    "command": {
+        "move": "move_cmd",
+        "aim": "aim_cmd",
+        "shot": "shot_cmd"
+    }
+}

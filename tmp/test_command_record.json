@@ -1,0 +1,5 @@
+{
+    "move": "move_cmd",
+    "aim": "aim_cmd",
+    "shot": "shot_cmd"
+}
